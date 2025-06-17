@@ -1,17 +1,17 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
 
 interface AdminAttr {
-    full_name:string;
-    email:string;
-    phone_number:string;
-    birthdate:Date;
-    hashed_password:string;
-    is_active:Boolean;
-    is_admin:Boolean;
-    hashed_refresh_token:string;
+    full_name: string;
+    email: string;
+    phone_number: string;
+    birthdate: Date;
+    hashed_password: string;
+    is_active: Boolean;
+    is_admin: Boolean;
+    hashed_refresh_token: string;
 }
 
-@Table({tableName: 'admin'})
+@Table({ tableName: 'admin' })
 export class Admin extends Model<Admin, AdminAttr> {
 
     @Column({
@@ -19,37 +19,37 @@ export class Admin extends Model<Admin, AdminAttr> {
         autoIncrement: true,
         primaryKey: true
     })
-    id: number;
+    declare id: number;
 
     @Column({
 
     })
-    full_name:string;
+    full_name: string;
 
     @Column({
 
     })
-    email:string;
+    email: string;
 
     @Column({
 
     })
-    phone_number:string;
+    phone_number: string;
 
     @Column({
 
     })
-    birthdate:Date
+    birthdate: Date
 
     @Column({
 
     })
-    hashed_password:string
+    hashed_password: string
 
     @Column({
 
     })
-    is_active:Boolean
+    is_active: Boolean
 
     @Column({
 
@@ -59,5 +59,5 @@ export class Admin extends Model<Admin, AdminAttr> {
     @Column({
 
     })
-    hashed_refresh_token:string
+    hashed_refresh_token: string
 }

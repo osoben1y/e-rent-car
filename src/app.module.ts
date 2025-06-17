@@ -3,6 +3,5 @@ import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [AdminModule],
-
 })
 export class AppModule {}
