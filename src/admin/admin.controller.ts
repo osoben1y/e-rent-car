@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateAdminDto } from './dto/create-admin.dto';
+import { CreateAdminDto } from './dto/register-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
 @Controller('admin')
