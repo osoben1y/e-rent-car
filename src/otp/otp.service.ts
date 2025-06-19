@@ -11,7 +11,12 @@ import { Customer } from 'src/customer/models/customer.model';
 
 @Injectable()
 export class OtpService {
-  create(createOtpDto: CreateOtpDto) {
+  constructor(
+    @InjectModel(Otp) private otpRepository: typeof Otp,
+    @InjectModel(Customer) private customerRepository: typeof Customer,
+  ) { }
+
+  async create(createOtpDto: CreateOtpDto) {
     return 'This action adds a new otp';
   }
 
