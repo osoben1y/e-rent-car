@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCustomerDto } from './dto/login-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { RegisterCustomerDto } from './dto/register-customer.dto';
+import { Customer } from './models/customer.model';
+import { InjectModel } from '@nestjs/sequelize';
+import { JwtService } from '@nestjs/jwt';
+import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class CustomerService {
-  create(createCustomerDto: CreateCustomerDto) {
-    return 'This action adds a new customer';
+  @InjectModel(Customer) private customerRepository: typeof Customer;
+  private readonly jwtService: JwtService;
+  private readonly mailService: MailService;
+
+  create(registerCustomerDto: RegisterCustomerDto, res: Response) {
+
   }
 
   findAll() {
