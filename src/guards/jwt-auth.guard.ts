@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class JwtGuard implements CanActivate {
   constructor(private readonly jwtService: JwtService) {}
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest();
     const authHeader = req.headers.authorization;

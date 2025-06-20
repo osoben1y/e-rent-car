@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { RegisterCustomerDto } from './dto/register-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -12,41 +22,48 @@ import { IsAdminGuard } from 'src/guards/is-admin.guard';
 import { UserSelfGuard } from 'src/guards/user-self.guard';
 import { JwtGuard } from 'src/guards/jwt-auth.guard';
 
-@ApiTags("customers")
+@ApiTags('customers')
 @Controller('customer')
 export class CustomerController {
-  constructor(private readonly customerService: CustomerService) { }
+  constructor(private readonly customerService: CustomerService) {}
 
   @ApiOperation({ summary: "Mijoz ro'yxatdan o'tish joyi" })
   @Post('signup')
-  register(@Body() registerCustomerDto: RegisterCustomerDto, @Res({ passthrough: true }) res: Response) {
+  register(
+    @Body() registerCustomerDto: RegisterCustomerDto,
+    @Res({ passthrough: true }) res: Response
+  ) {
     return this.customerService.register(registerCustomerDto, res);
   }
 
-
   @ApiOperation({ summary: "Mijoz logindan o'tish joyi" })
   @Post('signin')
-  login(@Body() loginCustomerDto: LoginCustomerDto, @Res({ passthrough: true }) res: Response) {
+  login(
+    @Body() loginCustomerDto: LoginCustomerDto,
+    @Res({ passthrough: true }) res: Response
+  ) {
     return this.customerService.login(loginCustomerDto, res);
   }
 
-
   @ApiOperation({ summary: 'Mijozning saytdan chiqish joyi' })
   @Post('logout')
-  logout(@CookieGetter('refresh_token') refreshToken: string, @Res({ passthrough: true }) res: Response) {
+  logout(
+    @CookieGetter('refresh_token') refreshToken: string,
+    @Res({ passthrough: true }) res: Response
+  ) {
     return this.customerService.logout(refreshToken, res);
   }
 
-
-  @ApiOperation({ summary: "Refresh tokenni yangilash" })
+  @ApiOperation({ summary: 'Refresh tokenni yangilash' })
   @UseGuards(IsAdminGuard)
   @Post(':id/refreshToken')
-  refreshToken(@Param('id') id: number,
+  refreshToken(
+    @Param('id') id: number,
     @CookieGetter('refresh_token') refreshToken: string,
-    @Res({ passthrough: true }) res: Response) {
+    @Res({ passthrough: true }) res: Response
+  ) {
     return this.customerService.refreshToken(id, refreshToken, res);
   }
-
 
   @ApiOperation({ summary: "Barcha mijozlar ro'yxatini ko'rish" })
   @UseGuards(IsAdminGuard)
@@ -54,7 +71,6 @@ export class CustomerController {
   findAll() {
     return this.customerService.findAll();
   }
-
 
   @ApiOperation({ summary: "Mijozni ID si bo'yich topish" })
   @UseGuards(UserSelfGuard)
@@ -64,15 +80,16 @@ export class CustomerController {
     return this.customerService.findOne(id);
   }
 
-
   @ApiOperation({ summary: "Mijoz ma'lumotlarini o'zgartirish" })
   @UseGuards(UserSelfGuard)
   @UseGuards(JwtGuard)
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateCustomerDto: UpdateCustomerDto) {
+  update(
+    @Param('id') id: number,
+    @Body() updateCustomerDto: UpdateCustomerDto
+  ) {
     return this.customerService.update(id, updateCustomerDto);
   }
-
 
   @ApiOperation({ summary: "Mijozni o'chirib tashlash" })
   @UseGuards(IsAdminGuard)

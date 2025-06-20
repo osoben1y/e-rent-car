@@ -14,6 +14,6 @@ import { Otp } from '../otp/models/otp.model';
     JwtModule.register({}),
   ],
   controllers: [CustomerController],
-  providers: [CustomerService]
+  providers: [CustomerService],
 })
-export class CustomerModule { }
+export class CustomerModule {}

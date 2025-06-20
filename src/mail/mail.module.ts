@@ -3,7 +3,7 @@ import { MailService } from './mail.service';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Otp } from 'src/otp/models/otp.model';
 
@@ -16,8 +16,8 @@ import { Otp } from 'src/otp/models/otp.model';
           secure: false,
           auth: {
             user: config.get<string>('MAILDEV_USER'),
-            pass: config.get<string>('MAILDEV_PASS')
-          }
+            pass: config.get<string>('MAILDEV_PASS'),
+          },
         },
         defaults: {
           from: `"Avto ijara" <${config.get('MAILER_HOST')}>`,
@@ -28,14 +28,14 @@ import { Otp } from 'src/otp/models/otp.model';
           templates: 'confirmation',
           options: {
             strict: true,
-          }
-        }
+          },
+        },
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     SequelizeModule.forFeature([Otp]),
   ],
   providers: [MailService],
-  exports: [MailService]
+  exports: [MailService],
 })
-export class MailModule { }
+export class MailModule {}

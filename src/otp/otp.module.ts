@@ -9,9 +9,9 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
     SequelizeModule.forFeature([Otp, Customer]),
-    JwtModule.register({})
+    JwtModule.register({}),
   ],
   controllers: [OtpController],
-  providers: [OtpService]
+  providers: [OtpService],
 })
-export class OtpModule { }
+export class OtpModule {}
