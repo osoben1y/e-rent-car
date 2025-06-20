@@ -6,6 +6,11 @@ import { InjectModel } from '@nestjs/sequelize';
 import { JwtService } from '@nestjs/jwt';
 import { MailService } from 'src/mail/mail.service';
 
+export interface Tokens {
+  access_token: string;
+  refresh_token: string;
+ }
+
 @Injectable()
 export class CustomerService {
   @InjectModel(Customer) private customerRepository: typeof Customer;
